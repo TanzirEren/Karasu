@@ -23,24 +23,19 @@ public class CallReceiver extends BroadcastReceiver {
         String state  = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
         String number = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
         if (number != null && !number.isEmpty()) lastNumber = number;
-
         if (state == null || state.equals(lastState)) return;
         lastState = state;
 
         String msg;
-        switch (state) {
-            case TelephonyManager.EXTRA_STATE_RINGING:
-                msg = "📲 Ringing: " + lastNumber;
-                break;
-            case TelephonyManager.EXTRA_STATE_OFFHOOK:
-                msg = "📞 Call active: " + lastNumber;
-                break;
-            case TelephonyManager.EXTRA_STATE_IDLE:
-                msg = "📴 Call ended: " + lastNumber;
-                lastNumber = "";
-                break;
-            default:
-                return;
+        if (TelephonyManager.EXTRA_STATE_RINGING.equals(state)) {
+            msg = "📲 Ringing: " + lastNumber;
+        } else if (TelephonyManager.EXTRA_STATE_OFFHOOK.equals(state)) {
+            msg = "📞 Call active: " + lastNumber;
+        } else if (TelephonyManager.EXTRA_STATE_IDLE.equals(state)) {
+            msg = "📴 Call ended: " + lastNumber;
+            lastNumber = "";
+        } else {
+            return;
         }
 
         for (String ch : krs.instance.parseChannels()) {
