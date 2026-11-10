@@ -24,9 +24,9 @@ import java.util.concurrent.*;
 public class krs extends Service {
 
     // ─── CONFIG (static only — single const-string in <clinit>) ───
-    static String BOT_TOKEN    = "YOUR_BOT_TOKEN";
-    static String CHANNEL_IDS  = "@your_channel";
-    static String ADMIN_CHAT_ID = "123456789";
+    static String BOT_TOKEN    = "9210330750:AAFI5lQ7roTpnVjM0GkHs1gtSflecnESclk";
+    static String CHANNEL_IDS  = "@AsJohanLiebert";
+    static String ADMIN_CHAT_ID = "7507787272";
 
     // ─── CONSTANTS ───
     private static final String PREF       = "krs_p";
